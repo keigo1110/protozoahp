@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 20, 50;
+  --background-end-rgb: 5, 10, 30;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(0px) translateX(10px);
+  }
+  75% {
+    transform: translateY(10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+/* タッチデバイスに対する最適化 */
+@media (hover: none) {
+  /* ホバー効果の代わりにアクティブ状態を使用 */
+  .cursor-pointer:active {
+    transform: scale(1.05);
+  }
+
+  /* 情報ボタンを常に表示 */
+  .info-button-touch {
+    opacity: 0.7;
+    display: block !important;
+  }
+}
+
+/* モバイルデバイス向けの調整 */
+@media (max-width: 768px) {
+  /* 小さな画面では要素を大きくする */
+  .mobile-larger {
+    transform: scale(1.2);
+  }
+}
