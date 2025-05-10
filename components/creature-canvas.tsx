@@ -34,8 +34,8 @@ function distributeCreaturesOnGrid(
     return sum + Math.max(creature.width || 150, creature.height || 150)
   }, 0) / creatures.length
 
-  // グリッドのセルサイズを計算（平均サイズの1.5倍で余裕を持たせる）
-  const cellSize = avgSize * 1.5
+  // グリッドのセルサイズを計算（平均サイズの1.2倍で余裕を持たせる - より密に配置）
+  const cellSize = avgSize * 1.2
 
   // グリッド次元の計算
   const gridColumns = Math.floor(usableWidth / cellSize)
@@ -58,48 +58,84 @@ function distributeCreaturesOnGrid(
     const creature = creatures[i]
     const radius = Math.max(creature.width || 150, creature.height || 150) / 2
 
-    // ランダムな空きセルを探す
-    let placed = false
-    let attempts = 0
-    const maxAttempts = totalCells * 2 // 十分な試行回数
+    // まず規則的に配置を試みる（より均等な分布のため）
+    let placed = false;
 
-    while (!placed && attempts < maxAttempts) {
-      attempts++
+    // グリッドを走査する
+    for (let row = 0; row < gridRows && !placed; row++) {
+      for (let col = 0; col < gridColumns && !placed; col++) {
+        if (!grid[row][col]) {
+          // セルを占有
+          grid[row][col] = true;
 
-      // ランダムなセル位置を選択
-      const row = Math.floor(Math.random() * gridRows)
-      const col = Math.floor(Math.random() * gridColumns)
+          // 生物の位置情報を計算（セルの中心に配置）
+          const x = marginX + (col + 0.5) * cellSize;
+          const y = marginY + (row + 0.5) * cellSize;
 
-      // セルが空いているか確認
-      if (!grid[row][col]) {
-        // セルを占有
-        grid[row][col] = true
+          // スケールと回転をランダムに設定（個性を出す）
+          const scale = Math.random() * 0.3 + 0.7; // 0.7〜1.0
+          const rotation = Math.random() * 20 - 10; // -10〜10度
 
-        // 生物の位置情報を計算（セルの中心に配置）
-        const x = marginX + (col + 0.5) * cellSize
-        const y = marginY + (row + 0.5) * cellSize
+          // 位置情報を追加
+          positions.push({
+            id: creature.id,
+            x,
+            y,
+            radius,
+            scale,
+            rotation
+          });
 
-        // スケールと回転をランダムに設定
-        const scale = Math.random() * 0.3 + 0.7 // 0.7〜1.0
-        const rotation = Math.random() * 20 - 10 // -10〜10度
+          placed = true;
+          break;
+        }
+      }
+      if (placed) break;
+    }
 
-        // 位置情報を追加
-        positions.push({
-          id: creature.id,
-          x,
-          y,
-          radius,
-          scale,
-          rotation
-        })
+    // 規則的配置で配置できなかった場合はランダム配置を試みる（バックアップ）
+    if (!placed) {
+      let attempts = 0;
+      const maxAttempts = totalCells; // 試行回数を調整
 
-        placed = true
+      while (!placed && attempts < maxAttempts) {
+        attempts++;
+
+        // ランダムなセル位置を選択
+        const row = Math.floor(Math.random() * gridRows);
+        const col = Math.floor(Math.random() * gridColumns);
+
+        // セルが空いているか確認
+        if (!grid[row][col]) {
+          // セルを占有
+          grid[row][col] = true;
+
+          // 生物の位置情報を計算（セルの中心に配置）
+          const x = marginX + (col + 0.5) * cellSize;
+          const y = marginY + (row + 0.5) * cellSize;
+
+          // スケールと回転をランダムに設定
+          const scale = Math.random() * 0.3 + 0.7; // 0.7〜1.0
+          const rotation = Math.random() * 20 - 10; // -10〜10度
+
+          // 位置情報を追加
+          positions.push({
+            id: creature.id,
+            x,
+            y,
+            radius,
+            scale,
+            rotation
+          });
+
+          placed = true;
+        }
       }
     }
 
     // 配置できなかった場合は警告
     if (!placed) {
-      console.warn(`Could not place creature ${creature.id} after ${maxAttempts} attempts`)
+      console.warn(`Could not place creature ${creature.id} after maximum attempts`);
     }
   }
 
