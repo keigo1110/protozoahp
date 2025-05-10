@@ -24,66 +24,70 @@ type CreatureProps = {
 // 生物のカテゴリに応じたアニメーションを定義
 const categoryAnimations = {
   land: {
-    // 陸の生物：うごめく・多関節的な動き
+    // 陸の生物：うごめく・多関節的な動き（より多様に）
     tap: (duration: number, intensity: number) => ({
-      x: [0, 40 * intensity, -60 * intensity, 30 * intensity, -20 * intensity, 50 * intensity, -35 * intensity, 0],
-      y: [0, -30 * intensity, 20 * intensity, -45 * intensity, 55 * intensity, -25 * intensity, 15 * intensity, 0],
-      rotate: [0, 20 * intensity, -15 * intensity, 25 * intensity, -20 * intensity, 10 * intensity, -5 * intensity, 0],
-      scale: [1, 1 + 0.05 * intensity, 1 - 0.07 * intensity, 1 + 0.03 * intensity, 1, 1 + 0.04 * intensity, 1 - 0.03 * intensity, 1],
+      x: [0, 60 * intensity, -80 * intensity, 40 * intensity, -50 * intensity, 70 * intensity, -45 * intensity, 30 * intensity, -20 * intensity, 10 * intensity, 0],
+      y: [0, -40 * intensity, 30 * intensity, -55 * intensity, 65 * intensity, -35 * intensity, 25 * intensity, -15 * intensity, 10 * intensity, -5 * intensity, 0],
+      rotate: [0, 25 * intensity, -20 * intensity, 30 * intensity, -25 * intensity, 15 * intensity, -10 * intensity, 5 * intensity, -3 * intensity, 1 * intensity, 0],
+      scale: [1, 1 + 0.08 * intensity, 1 - 0.1 * intensity, 1 + 0.05 * intensity, 1 - 0.03 * intensity, 1 + 0.06 * intensity, 1 - 0.04 * intensity, 1 + 0.02 * intensity, 1 - 0.01 * intensity, 1 + 0.01 * intensity, 1],
       transition: {
         duration: duration,
         ease: "easeInOut",
-        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1],
+        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       },
     }),
   },
   air: {
-    // 空の生物：ふわふわと漂う動き
+    // 空の生物：ふわふわと漂う動き（より上昇・広範囲）
     tap: (duration: number, intensity: number) => ({
-      y: [0, -100 * intensity, -40 * intensity, -120 * intensity, -60 * intensity, -90 * intensity, -20 * intensity, 0],
-      x: [0, 10 * intensity, -8 * intensity, 5 * intensity, -10 * intensity, 6 * intensity, -3 * intensity, 0],
-      rotate: [0, 5 * intensity, -3 * intensity, 8 * intensity, -5 * intensity, 3 * intensity, -1 * intensity, 0],
-      scale: [1, 1 + 0.08 * intensity, 1 + 0.04 * intensity, 1 + 0.06 * intensity, 1 + 0.02 * intensity, 1 + 0.03 * intensity, 1 + 0.01 * intensity, 1],
+      y: [0, -140 * intensity, -60 * intensity, -180 * intensity, -100 * intensity, -150 * intensity, -80 * intensity, -120 * intensity, -50 * intensity, -30 * intensity, 0],
+      x: [0, 20 * intensity, -15 * intensity, 40 * intensity, -30 * intensity, 60 * intensity, -45 * intensity, 25 * intensity, -10 * intensity, 5 * intensity, 0],
+      rotate: [0, 10 * intensity, -8 * intensity, 15 * intensity, -12 * intensity, 8 * intensity, -5 * intensity, 3 * intensity, -2 * intensity, 1 * intensity, 0],
+      scale: [1, 1 + 0.1 * intensity, 1 + 0.05 * intensity, 1 + 0.12 * intensity, 1 + 0.07 * intensity, 1 + 0.09 * intensity, 1 + 0.04 * intensity, 1 + 0.03 * intensity, 1 + 0.02 * intensity, 1 + 0.01 * intensity, 1],
       transition: {
         duration: duration,
         ease: [0.34, 1.56, 0.64, 1], // 風に漂うような動き
-        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1],
+        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       },
     }),
   },
   water: {
-    // 水の生物：波打つような滑らかな動き
+    // 水の生物：波打つような滑らかな動き（より遠くへ）
     tap: (duration: number, intensity: number) => ({
       x: [
         0,
-        80 * intensity,
-        120 * intensity,
         100 * intensity,
-        40 * intensity,
-        -40 * intensity,
+        150 * intensity,
+        120 * intensity,
+        80 * intensity,
+        0 * intensity,
         -80 * intensity,
-        -60 * intensity,
+        -150 * intensity,
+        -120 * intensity,
+        -50 * intensity,
         -20 * intensity,
         0,
       ],
-      y: [0, 5 * intensity, 0, -3 * intensity, -2 * intensity, 0, 3 * intensity, 0, -2 * intensity, 0],
+      y: [0, 8 * intensity, 3 * intensity, -5 * intensity, -10 * intensity, -3 * intensity, 0, 5 * intensity, 10 * intensity, 3 * intensity, -2 * intensity, 0],
       rotate: [
         0,
-        8 * intensity,
         12 * intensity,
+        18 * intensity,
+        15 * intensity,
         8 * intensity,
-        4 * intensity,
         0,
-        -4 * intensity,
         -8 * intensity,
-        -3 * intensity,
+        -15 * intensity,
+        -12 * intensity,
+        -5 * intensity,
+        -2 * intensity,
         0,
       ],
-      scale: [1, 1 + 0.03 * intensity, 1 + 0.05 * intensity, 1 + 0.02 * intensity, 1, 1 - 0.01 * intensity, 1 + 0.02 * intensity, 1 + 0.01 * intensity, 1 - 0.01 * intensity, 1],
+      scale: [1, 1 + 0.05 * intensity, 1 + 0.08 * intensity, 1 + 0.04 * intensity, 1 + 0.02 * intensity, 1, 1 - 0.02 * intensity, 1 + 0.03 * intensity, 1 + 0.05 * intensity, 1 + 0.02 * intensity, 1 - 0.01 * intensity, 1],
       transition: {
         duration: duration,
         ease: [0.45, 0, 0.55, 1], // 滑らかな波打つような動き
-        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1],
+        times: [0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.86, 1],
       },
     }),
   },
@@ -113,22 +117,29 @@ export default function Creature({ creature, position, onInfoClick }: CreaturePr
     let intensity = 0
 
     if (tapDuration < 0.2) {
-      // 短いタップ：1.5秒間動く、強度0.7
-      duration = 1.5
-      intensity = 0.7
-    } else if (tapDuration < 0.7) {
-      // 中くらいのタップ：3秒間動く、強度1.0
+      // 短いタップ：3秒間動く、強度1.0
       duration = 3
       intensity = 1.0
-    } else {
-      // 長いタップ：4秒間動く、強度1.5
-      duration = 4
+    } else if (tapDuration < 0.7) {
+      // 中くらいのタップ：5秒間動く、強度1.5
+      duration = 5
       intensity = 1.5
+    } else {
+      // 長いタップ：7秒間動く、強度2.0
+      duration = 7
+      intensity = 2.0
     }
 
-    // わずかなランダム性を追加して「生きている感じ」を演出
-    duration *= (0.9 + Math.random() * 0.2) // ±10%のランダム性
-    intensity *= (0.95 + Math.random() * 0.1) // ±5%のランダム性
+    // 生物の種類に応じてさらにランダム性を追加
+    const categoryFactor = {
+      land: { durationMod: 0.9, intensityMod: 1.2 },
+      air: { durationMod: 1.2, intensityMod: 0.9 },
+      water: { durationMod: 1.1, intensityMod: 1.1 }
+    }[creature.category]
+
+    // カテゴリごとの特性と少しのランダム性を追加
+    duration *= categoryFactor.durationMod * (0.9 + Math.random() * 0.4) // ±20%のランダム性
+    intensity *= categoryFactor.intensityMod * (0.9 + Math.random() * 0.3) // ±15%のランダム性
 
     setAnimationDuration(duration)
     setAnimationIntensity(intensity)

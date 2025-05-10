@@ -34,8 +34,8 @@ function distributeCreaturesOnGrid(
     return sum + Math.max(creature.width || 150, creature.height || 150)
   }, 0) / creatures.length
 
-  // グリッドのセルサイズを計算（平均サイズの1.2倍で余裕を持たせる - より密に配置）
-  const cellSize = avgSize * 1.2
+  // グリッドのセルサイズを計算（平均サイズを小さくして密に配置）
+  const cellSize = avgSize * 0.8
 
   // グリッド次元の計算
   const gridColumns = Math.floor(usableWidth / cellSize)
@@ -72,9 +72,9 @@ function distributeCreaturesOnGrid(
           const x = marginX + (col + 0.5) * cellSize;
           const y = marginY + (row + 0.5) * cellSize;
 
-          // スケールと回転をランダムに設定（個性を出す）
-          const scale = Math.random() * 0.3 + 0.7; // 0.7〜1.0
-          const rotation = Math.random() * 20 - 10; // -10〜10度
+          // スケールと回転をランダムに設定（より小さく）
+          const scale = Math.random() * 0.2 + 0.5; // 0.5〜0.7の範囲に縮小
+          const rotation = Math.random() * 30 - 15; // -15〜15度
 
           // 位置情報を追加
           positions.push({
@@ -114,9 +114,9 @@ function distributeCreaturesOnGrid(
           const x = marginX + (col + 0.5) * cellSize;
           const y = marginY + (row + 0.5) * cellSize;
 
-          // スケールと回転をランダムに設定
-          const scale = Math.random() * 0.3 + 0.7; // 0.7〜1.0
-          const rotation = Math.random() * 20 - 10; // -10〜10度
+          // スケールと回転をランダムに設定（より小さく）
+          const scale = Math.random() * 0.2 + 0.5; // 0.5〜0.7の範囲に縮小
+          const rotation = Math.random() * 30 - 15; // -15〜15度
 
           // 位置情報を追加
           positions.push({
