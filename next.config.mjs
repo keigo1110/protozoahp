@@ -8,7 +8,12 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: [],
   },
-}
+  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
+};
 
-export default nextConfig
+export default nextConfig;

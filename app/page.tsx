@@ -107,14 +107,14 @@ export default function Home() {
         </header>
 
         {/* 生物キャンバス - 固定高さで配置 */}
-        <section className="relative w-full h-[60vh] mx-auto mb-8">
+        <section className="relative w-full h-[60vh] mx-auto mb-8" aria-label="体験インタラクション">
           <div className="w-full h-full">
             <CreatureCanvas onInfoClick={handleInfoClick} />
           </div>
         </section>
 
         {/* コンセプトセクション */}
-        <section className="w-full py-12 bg-gradient-to-b from-gray-900/30 to-blue-950/30 border-t border-b border-blue-800/50 relative z-10">
+        <section id="concept" className="w-full py-12 bg-gradient-to-b from-gray-900/30 to-blue-950/30 border-t border-b border-blue-800/50 relative z-10">
           <div className="max-w-5xl mx-auto text-center text-blue-100 px-4">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">コンセプト</h2>
             <p className="mb-8 text-lg md:text-xl">
@@ -133,15 +133,45 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 原生機械生物とはセクション */}
+        <section id="about-creatures" className="w-full py-12 px-4 bg-gradient-to-b from-blue-950/30 to-gray-900/30 relative z-10">
+          <div className="max-w-5xl mx-auto text-center text-blue-100">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">原生機械生物とは</h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-8">
+              <div className="flex flex-col items-center">
+                <img src="/images/cap.png" alt="スーパーキャパシタ" className="h-32 object-contain mb-4" width="100" height="100" />
+                <p className="text-lg font-medium">スーパーキャパシタ</p>
+              </div>
+              <div className="text-4xl font-bold my-2 md:my-0">×</div>
+              <div className="flex flex-col items-center">
+                <img src="/images/motor.png" alt="アクチュエータ" className="h-32 object-contain mb-4" width="100" height="100" />
+                <p className="text-lg font-medium">アクチュエータ</p>
+              </div>
+              <div className="hidden md:block text-4xl font-bold">→</div>
+              <div className="block md:hidden text-4xl font-bold my-2">↓</div>
+              <div className="flex flex-col items-center">
+                <img src="/images/car.png" alt="原生機械生物" className="h-32 object-contain mb-4" width="100" height="100" />
+                <p className="text-lg font-medium">原生機械生物</p>
+              </div>
+            </div>
+            <p className="max-w-3xl mx-auto text-md md:text-lg">
+              スーパーキャパシタという一瞬で電気を蓄えるパーツとアクチュエータという<br />
+              動きを生み出すパーツから成り立つ単純な生き物の種です。<br />
+              手で触れることでエネルギーが供給され、<br />
+              それぞれ独自の動きを見せる様々な種類の機械生物が存在します。
+            </p>
+          </div>
+        </section>
+
         {/* 動画セクション */}
-        <section id="video-section" className="w-full py-12 px-4 relative z-10">
+        <section id="video" className="w-full py-12 px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-blue-100 text-center">動画</h2>
             <div className="aspect-video w-full bg-gray-700 rounded-lg overflow-hidden">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" // あとで実際の動画URLに置き換えてください
-                title="YouTube video player"
+                src="https://www.youtube.com/embed/qQelhaXshZc?si=2A-pu0U5NAjaTYDj"
+                title="Protozoa - 原生機械生物のインタラクティブアート作品"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -151,7 +181,7 @@ export default function Home() {
         </section>
 
         {/* 制作者セクション */}
-        <section id="creators-section" className="w-full py-12 bg-gradient-to-b from-blue-950/30 to-gray-900/30 border-t border-blue-800/50 relative z-10">
+        <section id="creators" className="w-full py-12 bg-gradient-to-b from-blue-950/30 to-gray-900/30 border-t border-blue-800/50 relative z-10">
           <div className="max-w-5xl mx-auto text-center px-4">
             <h2 className="text-2xl md:text-3xl font-bold text-blue-100 mb-8">制作者</h2>
             <div className="flex flex-wrap justify-center gap-6 md:gap-8">
@@ -174,8 +204,20 @@ export default function Home() {
         </section>
 
         {/* フッター */}
-        <footer className="w-full py-8 text-center text-blue-300 text-sm opacity-70">
-          © {new Date().getFullYear()} Protozoa
+        <footer className="w-full py-8 text-center">
+          <div className="mb-4">
+            <a
+              href="https://4zigenhp.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-2 bg-blue-800/50 hover:bg-blue-700/70 text-blue-100 rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/20 border border-blue-700/30 transform hover:-translate-y-1"
+            >
+              4ZIGEN
+            </a>
+          </div>
+          <div className="text-blue-300 text-sm opacity-70">
+            © {new Date().getFullYear()} Protozoa
+          </div>
         </footer>
       </main>
 
@@ -183,6 +225,37 @@ export default function Home() {
       <AnimatePresence>
         {showInfo && selectedCreature && <InfoPanel creature={selectedCreature} onClose={handleCloseInfo} />}
       </AnimatePresence>
+
+      {/* 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": "Protozoa - 原生機械生物を体験するインタラクティブアート",
+            "description": "スーパーキャパシタとアクチュエータを組み合わせた原生機械生物を体験するインタラクティブアート作品です。手で触れることでエネルギーが供給され、それぞれ独自の動きを見せる様々な種類の機械生物が存在します。",
+            "creator": [
+              {
+                "@type": "Person",
+                "name": "南田桂吾"
+              },
+              {
+                "@type": "Person",
+                "name": "中田裕紀"
+              },
+              {
+                "@type": "Person",
+                "name": "金澤政宜"
+              }
+            ],
+            "url": "https://protozoa-site.vercel.app/",
+            "artform": "インタラクティブアート",
+            "artMedium": "電子機械装置",
+            "keywords": "原生機械生物, プロトゾア, スーパーキャパシタ, アクチュエータ, インタラクティブアート"
+          })
+        }}
+      />
     </div>
   )
 }
