@@ -203,6 +203,44 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ProtoPedia掲載情報セクション */}
+        <section id="protopedia" className="w-full py-12 bg-gradient-to-b from-gray-900/30 to-blue-950/30 border-t border-blue-800/50 relative z-10">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-100 mb-6">作品情報</h2>
+            <div className="bg-blue-800/30 hover:bg-blue-700/40 p-8 rounded-lg shadow-lg border border-blue-700/30 transition-all duration-300 hover:shadow-blue-500/20 transform hover:-translate-y-1">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-16 h-16 bg-blue-600/50 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-blue-200" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-100 mb-2">ProtoPediaに掲載しました</h3>
+                  <p className="text-blue-200 mb-4 max-w-2xl">
+                    このプロジェクト「Protozoa」を<br />
+                    モノづくりプラットフォーム ProtoPedia に掲載しました。<br />
+                    作品の詳細や制作過程をご覧いただけます。<br />
+                    ProtoPedia Award 2025<br />
+                    〜ぼくのかんがえたさいきょうの〇〇〇〜<br />
+                    応募作品です。
+                  </p>
+                  <a
+                    href="https://protopedia.net/prototype/6765"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-700/60 hover:bg-blue-600/70 text-blue-100 rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/30 border border-blue-600/40 transform hover:-translate-y-1"
+                  >
+                    <span>ProtoPediaで詳細を見る</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* フッター */}
         <footer className="w-full py-8 text-center">
           <div className="mb-4">
@@ -234,25 +272,68 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "Protozoa - 原生機械生物を体験するインタラクティブアート",
-            "description": "スーパーキャパシタとアクチュエータを組み合わせた原生機械生物を体験するインタラクティブアート作品です。手で触れることでエネルギーが供給され、それぞれ独自の動きを見せる様々な種類の機械生物が存在します。",
+            "alternateName": "プロトゾア",
+            "description": "スーパーキャパシタとアクチュエータを組み合わせた原生機械生物を体験するインタラクティブアート作品です。手で触れることでエネルギーが供給され、それぞれ独自の動きを見せる様々な種類の機械生物が存在します。ProtoPedia Award 2025応募作品。",
             "creator": [
               {
                 "@type": "Person",
-                "name": "南田桂吾"
+                "name": "南田桂吾",
+                "url": "https://keigominamida.com/"
               },
               {
                 "@type": "Person",
-                "name": "中田裕紀"
+                "name": "中田裕紀",
+                "url": "https://yuki-nakata.org/"
               },
               {
                 "@type": "Person",
-                "name": "金澤政宜"
+                "name": "金澤政宜",
+                "url": "https://kanassi.info/"
               }
             ],
+            "publisher": {
+              "@type": "Organization",
+              "name": "4ZIGEN",
+              "url": "https://4zigenhp.vercel.app/"
+            },
             "url": "https://protozoa-site.vercel.app/",
+            "mainEntityOfPage": "https://protozoa-site.vercel.app/",
             "artform": "インタラクティブアート",
             "artMedium": "電子機械装置",
-            "keywords": "原生機械生物, プロトゾア, スーパーキャパシタ, アクチュエータ, インタラクティブアート"
+            "genre": "メディアアート",
+            "keywords": "原生機械生物, プロトゾア, スーパーキャパシタ, アクチュエータ, インタラクティブアート, メディアアート, ProtoPedia, 4ZIGEN, カンブリア紀, 機械生物",
+            "dateCreated": "2025",
+            "datePublished": "2025-06-15",
+            "inLanguage": "ja",
+            "isAccessibleForFree": true,
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "インタラクティブアート"
+              },
+              {
+                "@type": "Thing",
+                "name": "スーパーキャパシタ"
+              },
+              {
+                "@type": "Thing",
+                "name": "原生機械生物"
+              }
+            ],
+            "mentions": [
+              {
+                "@type": "WebPage",
+                "name": "ProtoPedia",
+                "url": "https://protopedia.net/prototype/6765"
+              }
+            ],
+            "video": {
+              "@type": "VideoObject",
+              "name": "Protozoa - 原生機械生物のインタラクティブアート作品",
+              "embedUrl": "https://www.youtube.com/embed/qQelhaXshZc",
+              "thumbnailUrl": "https://img.youtube.com/vi/qQelhaXshZc/maxresdefault.jpg"
+            }
           })
         }}
       />
